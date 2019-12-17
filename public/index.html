@@ -12,7 +12,7 @@
     <div id="app">
 
       <ul>
-        <li v-for="(task, index) in tasks" v-bind:class="task.done ? 'done!' : 'still to-do'">
+        <li v-for="(task, index) in tasks" v-bind:class="task.done ? 'done' : 'still-to-do'">
           <span>{{task.task}}</span>
           <span v-if="task.done">Done!</span>
           <button v-if="!task.done" v-on:click="completeTask(index)">Complete Task</button>
@@ -22,6 +22,13 @@
       <form v-on:submit.prevent="saveNewTask">
         <label for="new-task">Add a new task:</label>
         <input v-model="newTask" type="text" id="new-task"/>
+        <label for="priority" class="primary">How important?</label>
+        <select id="priority" required>
+          <option value="" disabled selected></option>
+          <option value="1">Low Priority</option>
+          <option value="2">Medium Priority</option>
+          <option value="3">High Priority</option>
+        </select>
         <input type="submit"  value="Save new task" />
       </form>
 
