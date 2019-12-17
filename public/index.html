@@ -14,6 +14,19 @@
       <ul>
         <li v-for="(task, index) in tasks" v-bind:class="task.done ? 'done' : 'still-to-do'">
           <span>{{task.task}}</span>
+
+          <span>
+            <label for="priority">Priority:</label>
+            <input type="radio" id="low-priority" name="{{task}} priority" value="low priority" required>
+            <label for="low-priority">Low</label>
+            <input type="radio" id="medium-priority" name="{{task}} priority" value="medium priority" required>
+            <label for="medium-priority">medium</label>
+            <input type="radio" id="high-priority "name="{{task}} priority" value="high priority" required>
+            <label for="high-priority">high</label>
+          </span>
+            <span v-if="task.priority == 1">Low priority</span>
+            <span v-if="task.priority == 2">Medium priority</span>
+            <span v-if="task.priority == 3">High priority</span>
           <span v-if="task.done">Done!</span>
           <button v-if="!task.done" v-on:click="completeTask(index)">Complete Task</button>
         </li>
@@ -25,9 +38,9 @@
         <label for="priority" class="primary">How important?</label>
         <select id="priority" required>
           <option value="" disabled selected></option>
-          <option value="1">Low Priority</option>
-          <option value="2">Medium Priority</option>
-          <option value="3">High Priority</option>
+          <option value="high">Low Priority</option>
+          <option value="medium">Medium Priority</option>
+          <option value="low">High Priority</option>
         </select>
         <input type="submit"  value="Save new task" />
       </form>
